@@ -7,3 +7,39 @@ requires-python = ">=3.13"
 dependencies = [
     "simpy>=4.1.1",
 ]
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "ruff",
+]
+
+[tool.setuptools]
+packages=["cookieLearner"]
+
+[tool.uv]
+package = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "T20",     # flake8-print
+    "S101",    # Use of assert detected
+    "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in {name}
+    "D402",    # First line should not be the function's signature
+    "PLW0603", # Using the global statement to update `X` is discouraged
+    "D401",    # First line of docstring should be in imperative mood
+    "PLR0913", # Too many arguments to function call (N > 5)
+    "TD002",   # Missing author in TODO; try: `# TODO(<author_name>): ...`
+    "TD003",   # Missing issue link on the line following this TODO
+    "FIX002",  # Line contains TODO"
+    "E501",    # Line too long
+    "D107",    # Missing docstring in `__init__`
+    "D103",    # just for now I can't take it
+    "D104",    # Missing docstring in public package
+    "D100",    # Missing docstring in public module
+    "INP001",  # Implicit namespace package
+    "N802",    # Function name should be lowercase
+    "N803",    # Argument name should be lowercase
+    "N806"     # Variable in function should be lowercase
+]
+
