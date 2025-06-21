@@ -842,7 +842,12 @@ M.launch=function()
 			
 			me.val+=(M.getRestingVal(me.id)-me.val)*0.01;
 			
-			if (globD!=0 && Math.random()<globP) {me.val-=(1+me.d*Math.pow(Math.random(),3)*7)*globD;me.val-=globD*(1+Math.pow(Math.random(),3)*7);me.d+=globD*(1+Math.random()*4);me.dur=0;}
+			if (globD!=0 && Math.random()<globP) {
+				me.val-=(1+me.d*Math.pow(Math.random(),3)*7)*globD;
+				me.val-=globD*(1+Math.pow(Math.random(),3)*7);
+				me.d+=globD*(1+Math.random()*4);
+				me.dur=0;
+			}
 			
 			me.val+=Math.pow((Math.random()-0.5)*2,11)*3;
 			me.d+=0.1*(Math.random()-0.5);
