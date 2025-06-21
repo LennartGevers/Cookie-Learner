@@ -1,0 +1,3 @@
+- [ ] Add pre-commit hooks
+- [ ] Add unittest
+- [ ] Add sample scripts
