@@ -229,9 +229,9 @@ def _apply_high_value_dampening(
 def _apply_low_value_dampening(
     value: float, delta: float, threshold: float = 5.0
 ) -> tuple[float, float]:
-    if value < 5:
-        value += (5 - value) * 0.5
-    if value < 5 and delta < 0:
+    if value < threshold:
+        value += (threshold - value) * 0.5
+    if value < threshold and delta < 0:
         delta *= 0.95
     value = max(value, 1)
 
