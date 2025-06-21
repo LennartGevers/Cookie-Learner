@@ -56,7 +56,7 @@ def _tick(value, delta, resting_value, stock_mode: StockMode, remaining_mode_dur
         dragon_boost,
     )
 
-    value, delta, mode = _apply_fast_mode_tick(
+    value, delta, stock_mode = _apply_fast_mode_tick(
         value,
         delta,
         stock_mode,
