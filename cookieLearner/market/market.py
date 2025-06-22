@@ -42,6 +42,8 @@ class Config:
     fast_mode_tick_fast_rise_probability: float = 0.3
     fast_mode_tick_fast_rise_to_fast_fall_probability: float = 0.03
     fast_mode_tick_fast_fall_probability: float = 0.3
+    resting_stock_value_base: float = 10.0
+    resting_stock_value_multiplier: float = 10.0
 
 
 @dataclass
@@ -68,14 +70,23 @@ DEFAULT_CONFIG = Config()
 STOCK_MODES: tuple[StockMode] = get_args(StockMode)
 
 
-def resting_stock_value(stock_id: int, bank_level: int) -> float:
+def resting_stock_value(
+    stock_id: int,
+    bank_level: int,
+    config: Config = DEFAULT_CONFIG,
+) -> float:
     """Returns the resting stock_value of the good.
 
     Returns:
         float: The resting stock_value of the good.
 
     """
-    return 10.0 + 10.0 * stock_id + (bank_level - 1.0)
+    # bank_level starts at 1, so we subtract 1 to make it zero-based
+    return (
+        config.resting_stock_value_base
+        + config.resting_stock_value_multiplier * stock_id
+        + (bank_level - 1.0)
+    )
 
 
 def tick(
@@ -88,6 +99,7 @@ def tick(
     global_delta: float,
     instant_mode_change_probability: float,
     dragon_boost: float,
+    config: Config = DEFAULT_CONFIG,
 ) -> tuple[float, float, StockMode, int]:
     stock_delta = stock_delta * 0.97 + 0.01 * dragon_boost
 
@@ -110,6 +122,7 @@ def tick(
         stock_value,
         stock_delta,
         dragon_boost,
+        config=config,
     )
 
     stock_value, stock_delta, stock_mode = _apply_fast_mode_tick(
@@ -117,12 +130,14 @@ def tick(
         stock_delta,
         stock_mode,
         dragon_boost,
+        config=config,
     )
 
     stock_value, stock_delta = _apply_high_stock_value_dampening(
         stock_value,
         stock_delta,
         bank_level,
+        config=config,
     )
 
     stock_value += stock_delta
@@ -130,6 +145,7 @@ def tick(
     stock_value, stock_delta = _apply_low_stock_value_dampening(
         stock_value,
         stock_delta,
+        config=config,
     )
 
     remaining_mode_duration -= 1
@@ -137,6 +153,7 @@ def tick(
         stock_mode, remaining_mode_duration = _update_expired_mode(
             stock_mode,
             dragon_boost,
+            config=config,
         )
 
     return stock_value, stock_delta, stock_mode, remaining_mode_duration
