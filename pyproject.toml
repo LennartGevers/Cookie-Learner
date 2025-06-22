@@ -50,3 +50,9 @@ ignore = [
     "S311",      # Standard pseudo-random generators are not suitable for cryptographic purposes 
 ]
 
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.0",
+]
+

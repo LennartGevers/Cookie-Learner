@@ -39,9 +39,9 @@ def _resting_stock_value(id: int, bank_level: int) -> float:
 
 
 def _tick(
-    stock_value,
-    stock_delta,
-    resting_stock_value,
+    stock_value: float,
+    stock_delta: float,
+    resting_stock_value: float,
     stock_mode: StockMode,
     remaining_mode_duration: int,
     bank_level: int,

@@ -12,6 +12,8 @@
 
 - [X] Express code as pure functions
 
+- [ ] Replace 'magic-values' e.g. probabilities, threshholds with config struct.
+
 # Implement simulations with jax
 
 - [ ] Define current `dataclass` instances as `jax.pytree` objects.
