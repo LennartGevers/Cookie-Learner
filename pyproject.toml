@@ -46,13 +46,13 @@ ignore = [
     "INP001",  # Implicit namespace package
     "N802",    # Function name should be lowercase
     "N803",    # Argument name should be lowercase
-    "N806",     # Variable in function should be lowercase
-    "S311",      # Standard pseudo-random generators are not suitable for cryptographic purposes 
+    "N806",    # Variable in function should be lowercase
+    "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
 ]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.2.0",
     "pytest>=8.4.0",
+    "ruff>=0.11.13",
 ]
-

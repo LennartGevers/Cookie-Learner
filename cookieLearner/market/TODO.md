@@ -7,12 +7,12 @@
 - [X] Refactor code into logical steps (see https://cookieclicker.wiki.gg/wiki/Stock_Market)
 
 - [X] Namespace enhancements
-    - [X] Use Enums for modes, 
-    - [X] use more expressive variale names.
+    - [X] Use Enums for modes,
+    - [X] use more expressive variable names.
 
 - [X] Express code as pure functions
 
-- [ ] Replace 'magic-values' e.g. probabilities, threshholds with config struct.
+- [ ] Replace 'magic-values' e.g. probabilities, thresholds with config struct.
 
 # Implement simulations with jax
 
