@@ -12,7 +12,7 @@
 
 - [X] Express code as pure functions
 
-- [ ] Replace 'magic-values' e.g. probabilities, thresholds with config struct.
+- [X] Replace 'magic-values' e.g. probabilities, thresholds with config struct.
 
 # Implement simulations with jax
 
