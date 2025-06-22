@@ -19,6 +19,12 @@ packages=["cookieLearner"]
 [tool.uv]
 package = true
 
+[tool.ruff]
+exclude = [
+  "cookieClickerCode",
+]
+
+
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
@@ -40,7 +46,7 @@ ignore = [
     "INP001",  # Implicit namespace package
     "N802",    # Function name should be lowercase
     "N803",    # Argument name should be lowercase
-    "N806"     # Variable in function should be lowercase
-    "S311      # Standard pseudo-random generators are not suitable for cryptographic purposes 
+    "N806",     # Variable in function should be lowercase
+    "S311",      # Standard pseudo-random generators are not suitable for cryptographic purposes 
 ]
 
