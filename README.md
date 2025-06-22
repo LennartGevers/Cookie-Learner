@@ -5,4 +5,4 @@
 
 Cookie Clicker Policy Learner.
 
-A simply implementation of the CookieClicker source code to train reinforcement learning algorithms on finding optimal policies for the cookie economics.
+A simple implementation of the CookieClicker source code to train reinforcement learning algorithms on finding optimal policies for the cookie economics.
