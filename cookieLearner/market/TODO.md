@@ -6,9 +6,9 @@
 
 - [X] Refactor code into logical steps (see https://cookieclicker.wiki.gg/wiki/Stock_Market)
 
-- [ ] Namespace enhancements
+- [X] Namespace enhancements
     - [X] Use Enums for modes, 
-    - [ ] use more expressive variale names.
+    - [X] use more expressive variale names.
 
 - [X] Express code as pure functions
 
