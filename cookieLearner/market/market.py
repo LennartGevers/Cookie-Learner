@@ -18,6 +18,7 @@ class GameEnvironment:
     num_brokers: int
     dragon_boost: float
 
+
 @dataclass
 class Good:
     id: int
@@ -36,7 +37,18 @@ def _resting_stock_value(id: int, bank_level: int) -> float:
     """
     return 10.0 + 10.0 * id + (bank_level - 1.0)
 
-def _tick(stock_value, stock_delta, resting_stock_value, stock_mode: StockMode, remaining_mode_duration: int, bank_level: int, global_delta: float, instant_mode_change_probability: float, dragon_boost: float) -> None:
+
+def _tick(
+    stock_value,
+    stock_delta,
+    resting_stock_value,
+    stock_mode: StockMode,
+    remaining_mode_duration: int,
+    bank_level: int,
+    global_delta: float,
+    instant_mode_change_probability: float,
+    dragon_boost: float,
+) -> None:
     stock_delta = stock_delta * 0.97 + 0.01 * dragon_boost
 
     stock_value, stock_delta = _apply_mode_tick(
@@ -47,7 +59,11 @@ def _tick(stock_value, stock_delta, resting_stock_value, stock_mode: StockMode, 
     )
 
     stock_value, stock_delta, remaining_mode_duration = _maybe_instant_mode_change(
-        global_delta, instant_mode_change_probability, stock_value, stock_delta, remaining_mode_duration
+        global_delta,
+        instant_mode_change_probability,
+        stock_value,
+        stock_delta,
+        remaining_mode_duration,
     )
 
     stock_value, stock_delta = _apply_fluctioations(
@@ -71,7 +87,9 @@ def _tick(stock_value, stock_delta, resting_stock_value, stock_mode: StockMode, 
 
     stock_value += stock_delta
 
-    stock_value, stock_delta = _apply_low_stock_value_dampening(stock_value, stock_delta)
+    stock_value, stock_delta = _apply_low_stock_value_dampening(
+        stock_value, stock_delta
+    )
 
     remaining_mode_duration -= 1
     if remaining_mode_duration <= 0:
@@ -149,7 +167,13 @@ def _apply_fast_mode_tick(
     return stock_value, stock_delta, mode
 
 
-def _maybe_instant_mode_change(global_delta: float, instant_mode_change_probability: float, stock_value: float, stock_delta: float, remaining_mode_duration: int) -> tuple[float , float, int]
+def _maybe_instant_mode_change(
+    global_delta: float,
+    instant_mode_change_probability: float,
+    stock_value: float,
+    stock_delta: float,
+    remaining_mode_duration: int,
+) -> tuple[float, float, int]:
     if global_delta != 0 and random.random() < instant_mode_change_probability:
         stock_value -= (1 + stock_delta * random.random() ** 3 * 7) * global_delta
         stock_value -= global_delta * (1 + random.random() ** 3 * 7)
